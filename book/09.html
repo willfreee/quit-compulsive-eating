@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Chapter 9: The &quot;What-the-Hell&quot; Domino Effect - The Easy Way to Stop Compulsive Eating</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Easy Way to Stop Compulsive Eating</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="chapter-9-the-what-the-hell-domino-effect"><a class="header" href="#chapter-9-the-what-the-hell-domino-effect">Chapter 9: The "What-the-Hell" Domino Effect</a></h1>
+<p>The cookie wasn't supposed to happen.</p>
+<p>Maybe it was sitting on the break room table at work. Maybe it was in the pantry, left over from the weekend. Maybe it was offered by a friend, and without thinking, you accepted it.</p>
+<p>But the moment it's gone—the moment the last crumb is swallowed—the voice arrives.</p>
+<p><em>Well, I've already blown it.</em></p>
+<p><em>I might as well eat the rest and start over tomorrow.</em></p>
+<p>And just like that, the dominoes begin to fall. One unplanned bite becomes a second. Then a third. Then the whole box. Then something salty to chase the sweet. Then something sweet to chase the salty. And before you know it, the entire day has been written off, and you're promising yourself that Monday—Monday for sure—you'll get back on track.</p>
+<p>But let me ask you something.</p>
+<p>If you dropped your phone and cracked the screen, would you smash it with a hammer to finish the job?</p>
+<h2 id="the-stumble-and-the-gutter"><a class="header" href="#the-stumble-and-the-gutter">The Stumble and the Gutter</a></h2>
+<p>Let's look at what actually happened.</p>
+<p>You ate one bite—one mouthful, a single moment of unplanned consumption. That's the entire event. That's the complete scope of what occurred.</p>
+<p>Then your mind did something remarkable. It took that single, insignificant event and inflated it into a catastrophe—declared the whole day ruined, concluded that since perfection was no longer possible, there was no point in trying at all.</p>
+<p>And then it gave you permission to binge.</p>
+<p>Imagine you're walking down the street and you trip over a crack in the sidewalk. You stumble, catch your balance, keep walking. That's the normal response—a brief moment of imbalance, quickly corrected, immediately forgotten.</p>
+<p>Now imagine instead that after tripping, you throw yourself onto the ground and roll into the gutter. You lie there in the filth, refusing to get up, because after all—you tripped, the walk is ruined, you might as well give up entirely.</p>
+<p>Does that make any sense? Of course not. The trip was a momentary stumble. The decision to roll into the gutter was an entirely separate action—a choice that had nothing to do with the original stumble.</p>
+<p>And yet that's exactly what you do when you respond to a single unplanned bite with a full-blown binge. The bite was a stumble. The binge was throwing yourself into the gutter.</p>
+<p>The first did not cause the second. The voice in your head caused the second.</p>
+<h2 id="the-switch-with-no-dimmer"><a class="header" href="#the-switch-with-no-dimmer">The Switch With No Dimmer</a></h2>
+<p>So why does one bite feel like a catastrophe? Why does a single mouthful trigger that voice?</p>
+<p>Because you've been trained to think in binaries.</p>
+<p>The diet mentality runs on all-or-nothing thinking. Every food is either "allowed" or "forbidden." Every day is either "good" or "bad." Every choice is either "perfect" or "ruined." There is no middle ground, no room for being human.</p>
+<p>Imagine a light switch that only has two settings: full brightness or complete darkness. No dimmer. No in-between. You walk into a room and flip the switch, and the light is blinding. You flip it again, and you're standing in pitch black. There's no way to create a soft glow, a gentle illumination, a comfortable middle ground.</p>
+<p>Would that be a good way to light a room? Or would it be exhausting—constantly flicking between blinding and blind?</p>
+<p>That's the binary you've been living in. And here's the thing about binaries: they guarantee eventual collapse.</p>
+<p>No one can live in a state of perfect compliance forever, eat "clean" 100% of the time, or avoid every unplanned bite for the rest of their life. It's impossible. And when you're living in a binary system, the first moment of imperfection doesn't just feel like a stumble—it feels like total failure.</p>
+<p>Because in a binary system, there's no such thing as a stumble—either you're perfect, or you've failed. There's no in-between.</p>
+<p>So the first unplanned bite doesn't just crack your resolve. It shatters the entire framework. And if the framework is shattered, what's left? Only the other side of the binary: total collapse.</p>
+<p>The "What-the-Hell" response is not a personal failing. It's the logical outcome of an impossible system. The binary thinking guarantees the very collapse it fears.</p>
+<h2 id="the-wrong-turn"><a class="header" href="#the-wrong-turn">The Wrong Turn</a></h2>
+<p>But let's examine the core claim underneath the "What-the-Hell" response.</p>
+<p><em>That one bite ruined everything. All my progress is gone. There's no point in trying to salvage the day.</em></p>
+<p>Let's be ruthlessly honest about what actually happened.</p>
+<p>You ate one bite. One mouthful. A few calories. A moment of pleasure.</p>
+<p>What did that bite actually ruin?</p>
+<p>Nothing. It ruined nothing. Your body doesn't register a single bite as a meaningful event. Your health isn't affected by one cookie. Your progress—whatever that means to you—isn't erased by one mouthful. The bite has no power to undo anything.</p>
+<p>The only thing that gave the bite its catastrophic meaning was the belief that it was catastrophic.</p>
+<p>If you're driving to a destination and take one wrong turn, have you ruined the entire journey? Or have you simply added a few minutes to the trip? Would you respond to the wrong turn by driving off a cliff? Or would you simply correct course and keep going?</p>
+<p>The wrong turn is not the problem. The overreaction to the wrong turn is the problem.</p>
+<p>One unplanned bite is a wrong turn—easily corrected, insignificant in the grand scheme. The only thing that makes it catastrophic is the belief that it is catastrophic—and that belief is the Big Monster's voice, not reality.</p>
+<p>The diet mentality taught you that a single bite could ruin everything. But the diet mentality was lying to you. It was using your own perfectionism against you, turning every minor stumble into a reason to abandon the entire journey.</p>
+<p>But you don't have to believe the lie anymore.</p>
+<h2 id="the-domino-that-doesnt-have-to-fall"><a class="header" href="#the-domino-that-doesnt-have-to-fall">The Domino That Doesn't Have to Fall</a></h2>
+<p>Now, let's address the final rationalization.</p>
+<p><em>Once I start, I can't stop. The momentum takes over. It's not a choice anymore—it's automatic.</em></p>
+<p>You know the feeling. You eat one cookie, and suddenly there's a pull toward the rest of the box. Something has been unleashed. The binge has begun, and it feels impossible to halt.</p>
+<p>But let's examine that feeling.</p>
+<p>Imagine a row of dominoes. The first one falls. Does the second one have to fall?</p>
+<p>Only if it's close enough to be knocked over.</p>
+<p>What if you simply pick up the second domino?</p>
+<p>The chain stops. The momentum dies. The cascade that seemed inevitable never happens.</p>
+<p>The dominoes didn't have to fall. They only fell because no one picked them up.</p>
+<p>The same is true of your binge. The momentum you feel after that first bite isn't a physical force that overpowers your will—it's a mental construct, a belief that the cascade is inevitable. The voice says <em>"You've already started, so you might as well finish,"</em> and you believe it.</p>
+<p>But the voice is not describing reality. It's manufacturing permission.</p>
+<p>You can stop after one bite. Or three. Or ten. The power to stop exists at every single moment along the chain. Not because you have willpower, not because you're strong, but because you finally see that the cascade was never automatic.</p>
+<p>It was always a choice.</p>
+<p>The second domino doesn't have to fall. You can pick it up. You can leave it standing. You can walk away from the row entirely.</p>
+<p>The first bite was never the problem. The lie about what it meant was.</p>
+<p>So one bite is just a bite. It has no power to ruin anything. But there's a deeper belief lurking beneath the surface—a belief that has been whispering to you for years. It's the voice that says: <em>I was born with an addictive personality. I simply lack the willpower other people have. I'm broken.</em></p>
+<p>In the next chapter, we're going to dismantle that voice completely. We're going to prove that willpower was never the right tool—because you don't need self-control to avoid a trap that offers zero benefit. And we're going to discover that you were never broken. You were just misinformed.</p>
+<p>The dominoes are down. Let's keep going.</p>
+<p>The first bite was never the problem. The lie about what it meant was.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="08.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="10.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="08.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="10.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
